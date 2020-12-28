@@ -26,6 +26,7 @@ chmod -R a+rw .
 BASEDIR="$PWD"
 cd "${INPUT_PKGDIR:-.}"
 
+sudo -u builder makepkg --printsrcinfo > .SRCINFO
 # Assume that if .SRCINFO is missing then it is generated elsewhere.
 # AUR checks that .SRCINFO exists so a missing file can't go unnoticed.
 if [ -f .SRCINFO ] && ! sudo -u builder makepkg --printsrcinfo | diff - .SRCINFO; then
